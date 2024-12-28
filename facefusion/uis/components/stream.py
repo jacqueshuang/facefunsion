@@ -100,7 +100,7 @@ def start(stream_uri:str, webcam_mode : WebcamMode, webcam_resolution : str, web
 	if webcam_mode in [ 'udp', 'v4l2' ]:
 		stream = open_stream(webcam_mode, webcam_resolution, webcam_fps) #type:ignore[arg-type]
 	webcam_width, webcam_height = unpack_resolution(webcam_resolution)
-	rtmp_url = "https://d1--cn-gotcha07.bilivideo.com/live-bvc/553360/live_5649601_5756686.flv?expires=1735353369&len=0&oi=1885263197&pt=h5&qn=10000&trid=10001e1927ec9da78c7e255f45765a676f56&sigparams=cdn,expires,len,oi,pt,qn,trid&cdn=cn-gotcha07&sign=afa4e3d11aaa4135013c868a00f83565&site=1d89a295c21b6d70544658fe5113b9e9&free_type=0&mid=0&sche=ban&trace=32&isp=cu&rg=South&pv=Guangdong&origin_bitrate=518496&hot_cdn=0&p2p_type=-1&deploy_env=prod&pp=rtmp&source=puv3_onetier&info_source=origin&score=1&suffix=origin&sk=1f2f776a3847ad0eca20f051dfe6676b&sl=1&vd=bc&src=puv3&order=1"
+	rtmp_url = "https://xy36x156x117x66xy.mcdn.bilivideo.cn/live-bvc/161129/live_37865772_85706548.flv?base_url=/live-bvc/323545/live_37865772_85706548.flv&deploy_env=prod&expires=1735365856&free_type=0&hot_cdn=0&info_source=origin&len=0&mid=0&oi=1885263197&origin_bitrate=512611&p2p_type=-1&pp=rtmp&pt=h5&qn=10000&score=1&sign=14efc22455e9f5bc00760719150c222a&sigparams=pt,qn,len,oi,trid,base_url,expires&sk=7fe1b6594a78962f62bae8bd6af61321&sl=1&source=puv3_freeze&source=puv3_onetier&suffix=origin&trid=11c238196d52224f2d02a32471676f86&uipstr=112.94.213.93"
 	webcam_capture  = cv2.VideoCapture(rtmp_url)
 	print(webcam_capture.isOpened())
 	if webcam_capture and webcam_capture.isOpened():
@@ -111,6 +111,7 @@ def start(stream_uri:str, webcam_mode : WebcamMode, webcam_resolution : str, web
 
 		for capture_frame in multi_process_capture(source_face, webcam_capture, webcam_fps):
 			if webcam_mode == 'inline':
+				#yield capture_frame
 				yield normalize_frame_color(capture_frame)
 			else:
 				try:
