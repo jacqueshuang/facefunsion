@@ -73,6 +73,6 @@ def listen() -> None:
 
 
 def run(ui : gradio.Blocks) -> None:
-	concurrency_count = min(2, multiprocessing.cpu_count())
-	ui.queue(concurrency_count = concurrency_count).launch(show_api = False, quiet = True)
-	# ui.launch(favicon_path = 'facefusion.ico', inbrowser = state_manager.get_item('open_browser'))
+	# concurrency_count = min(2, multiprocessing.cpu_count())
+	# ui.queue().launch(show_api = True, quiet = True)
+	ui.launch(favicon_path = 'facefusion.ico', inbrowser = state_manager.get_item('open_browser'))
